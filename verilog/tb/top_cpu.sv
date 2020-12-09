@@ -23,48 +23,48 @@ module top_cpu
   logic [31 : 0] dmemory_rdata;
   logic [0  : 0] dmemory_ready;
 
-  logic [0  : 0] iram_valid;
-  logic [0  : 0] iram_instr;
-  logic [31 : 0] iram_addr;
-  logic [31 : 0] iram_wdata;
-  logic [3  : 0] iram_wstrb;
+  logic [0  : 0] iram_valid = 0;
+  logic [0  : 0] iram_instr = 0;
+  logic [31 : 0] iram_addr = 0;
+  logic [31 : 0] iram_wdata = 0;
+  logic [3  : 0] iram_wstrb = 0;
   logic [31 : 0] iram_rdata;
   logic [0  : 0] iram_ready;
 
-  logic [0  : 0] dram_valid;
-  logic [0  : 0] dram_instr;
-  logic [31 : 0] dram_addr;
-  logic [31 : 0] dram_wdata;
-  logic [3  : 0] dram_wstrb;
+  logic [0  : 0] dram_valid = 0;
+  logic [0  : 0] dram_instr = 0;
+  logic [31 : 0] dram_addr = 0;
+  logic [31 : 0] dram_wdata = 0;
+  logic [3  : 0] dram_wstrb = 0;
   logic [31 : 0] dram_rdata;
   logic [0  : 0] dram_ready;
 
-  logic [0  : 0] timer_valid;
-  logic [0  : 0] timer_instr;
-  logic [31 : 0] timer_addr;
-  logic [31 : 0] timer_wdata;
-  logic [3  : 0] timer_wstrb;
-  logic [31 : 0] timer_rdata;
+  logic [0  : 0] timer_valid = 0;
+  logic [0  : 0] timer_instr = 0;
+  logic [31 : 0] timer_addr = 0;
+  logic [31 : 0] timer_wdata = 0;
+  logic [3  : 0] timer_wstrb = 0;
+  logic [31 : 0] timer_rdata = 0;
   logic [0  : 0] timer_ready;
   logic [0  : 0] timer_irpt;
 
-  logic [0  : 0] iram_i;
-  logic [0  : 0] iram_d;
-  logic [0  : 0] dram_i;
-  logic [0  : 0] dram_d;
-  logic [0  : 0] timer_i;
-  logic [0  : 0] timer_d;
+  logic [0  : 0] iram_i = 0;
+  logic [0  : 0] iram_d = 0;
+  logic [0  : 0] dram_i = 0;
+  logic [0  : 0] dram_d = 0;
+  logic [0  : 0] timer_i = 0;
+  logic [0  : 0] timer_d = 0;
 
   parameter [1  : 0] iram_access = 0;
   parameter [1  : 0] dram_access = 1;
   parameter [1  : 0] timer_access = 2;
   parameter [1  : 0] non_access = 3;
 
-  logic [1  : 0] instr_access_type;
-  logic [1  : 0] instr_release_type;
+  logic [2  : 0] instr_access_type = non_access;
+  logic [2  : 0] instr_release_type = non_access;
 
-  logic [1  : 0] data_access_type;
-  logic [1  : 0] data_release_type;
+  logic [2  : 0] data_access_type = non_access;
+  logic [2  : 0] data_release_type = non_access;
 
   always_comb begin
 

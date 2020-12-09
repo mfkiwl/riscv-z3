@@ -4,7 +4,7 @@ module register
 (
   input logic rst,
   input logic clk,
-  input register_rin_type register_win,
+  input register_rin_type register_rin,
   input register_win_type register_win,
   output register_out_type register_out
 );

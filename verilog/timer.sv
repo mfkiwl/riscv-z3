@@ -18,11 +18,11 @@ module timer
   timeunit 1ns;
   timeprecision 1ps;
 
-  logic [63:0] timer;
-  logic [63:0] timer_cmp;
+  logic [63:0] timer = 0;
+  logic [63:0] timer_cmp = 0;
 
-  logic [31:0] rdata;
-  logic [0:0] ready;
+  logic [31:0] rdata = 0;
+  logic [0:0] ready = 0;
 
   always_ff @(posedge clk) begin
     if (rst == 0) begin

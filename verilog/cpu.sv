@@ -73,6 +73,22 @@ module cpu
   assign execute_in.d = decode_out;
   assign execute_in.e = execute_out;
 
+  assign imemory_valid = imem_in.mem_valid;
+  assign imemory_instr = imem_in.mem_instr;
+  assign imemory_addr = imem_in.mem_addr;
+  assign imemory_wdata = imem_in.mem_wdata;
+  assign imemory_wstrb = imem_in.mem_wstrb;
+  assign imem_out.mem_rdata = imemory_rdata;
+  assign imem_out.mem_ready = imemory_ready;
+
+  assign dmemory_valid = dmem_in.mem_valid;
+  assign dmemory_instr = dmem_in.mem_instr;
+  assign dmemory_addr = dmem_in.mem_addr;
+  assign dmemory_wdata = dmem_in.mem_wdata;
+  assign dmemory_wstrb = dmem_in.mem_wstrb;
+  assign dmem_out.mem_rdata = dmemory_rdata;
+  assign dmem_out.mem_ready = dmemory_ready;
+
   agu agu_comp
   (
     .agu_in (agu_in),
@@ -215,22 +231,5 @@ module cpu
     .d (execute_in),
     .q (execute_out)
   );
-
-
-  assign imemory_valid = imem_in.mem_valid;
-  assign imemory_instr = imem_in.mem_instr;
-  assign imemory_addr = imem_in.mem_addr;
-  assign imemory_wdata = imem_in.mem_wdata;
-  assign imemory_wstrb = imem_in.mem_wstrb;
-  assign imem_out.mem_rdata = imemory_rdata;
-  assign imem_out.mem_ready = imemory_ready;
-
-  assign dmemory_valid = dmem_in.mem_valid;
-  assign dmemory_instr = dmem_in.mem_instr;
-  assign dmemory_addr = dmem_in.mem_addr;
-  assign dmemory_wdata = dmem_in.mem_wdata;
-  assign dmemory_wstrb = dmem_in.mem_wstrb;
-  assign dmem_out.mem_rdata = dmemory_rdata;
-  assign dmem_out.mem_ready = dmemory_ready;
 
 endmodule

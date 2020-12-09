@@ -9,8 +9,8 @@ module forwarding
   timeunit 1ns;
   timeprecision 1ps;
 
-  logic [31:0] res1;
-  logic [31:0] res2;
+  logic [31:0] res1 = 0;
+  logic [31:0] res2 = 0;
 
   always_comb begin
     res1 = 0;
