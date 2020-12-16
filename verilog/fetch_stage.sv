@@ -10,6 +10,8 @@ module fetch_stage
   output prefetch_in_type prefetch_in,
   input mem_out_type imem_out,
   output mem_in_type imem_in,
+  input pmp_out_type ipmp_out,
+  output pmp_in_type ipmp_in,
   input fetch_in_type d,
   output fetch_out_type q
 );

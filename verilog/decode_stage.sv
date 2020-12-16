@@ -21,6 +21,8 @@ module decode_stage
   input forwarding_out_type forwarding_out,
   output forwarding_in_type forwarding_in,
   output mem_in_type dmem_in,
+  input pmp_out_type dpmp_out,
+  output pmp_in_type dpmp_in,
   input decode_in_type d,
   output decode_out_type q
 );

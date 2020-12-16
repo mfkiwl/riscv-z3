@@ -61,6 +61,10 @@ module cpu
   mem_out_type imem_out;
   mem_in_type dmem_in;
   mem_out_type dmem_out;
+  pmp_in_type ipmp_in;
+  pmp_out_type ipmp_out;
+  pmp_in_type dpmp_in;
+  pmp_out_type dpmp_out;
 
   assign fetch_in.f = fetch_out;
   assign fetch_in.d = decode_out;
@@ -163,6 +167,22 @@ module cpu
     .prefetch_out (prefetch_out)
   );
 
+  pmp ipmp_comp
+  (
+    .rst (rst),
+    .clk (clk),
+    .pmp_in (ipmp_in),
+    .pmp_out (ipmp_out)
+  );
+
+  pmp dpmp_comp
+  (
+    .rst (rst),
+    .clk (clk),
+    .pmp_in (dpmp_in),
+    .pmp_out (dpmp_out)
+  );
+
   fetch_stage fetch_stage_comp
   (
     .rst (rst),
@@ -172,6 +192,8 @@ module cpu
     .prefetch_in (prefetch_in),
     .imem_out (imem_out),
     .imem_in (imem_in),
+    .ipmp_out (ipmp_out),
+    .ipmp_in (ipmp_in),
     .d (fetch_in),
     .q (fetch_out)
   );
@@ -195,6 +217,8 @@ module cpu
     .csr_out (csr_out),
     .csr_in (csr_in),
     .dmem_in (dmem_in),
+    .dpmp_out (dpmp_out),
+    .dpmp_in (dpmp_in),
     .d (decode_in),
     .q (decode_out)
   );

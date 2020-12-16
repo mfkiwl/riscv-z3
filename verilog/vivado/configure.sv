@@ -18,6 +18,9 @@ package configure;
 	parameter iram_depth = 12;
 	parameter dram_depth = 12;
 
+  parameter pmp_enable = 1;
+  parameter pmp_regions = 4;
+
 	parameter clk_freq = 100000000; // 100MHz
 	parameter clk_pll = 50000000; // 50MHz
 	parameter rtc_freq = 32768; // 32768Hz

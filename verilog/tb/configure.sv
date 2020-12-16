@@ -18,4 +18,7 @@ package configure;
 	parameter iram_depth = 15;
 	parameter dram_depth = 15;
 
+  parameter pmp_enable = 1;
+  parameter pmp_regions = 4;
+
 endpackage

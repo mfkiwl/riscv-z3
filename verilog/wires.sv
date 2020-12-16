@@ -1,4 +1,6 @@
 package wires;
+	import configure::*;
+
 	timeunit 1ns;
 	timeprecision 1ps;
 
@@ -308,6 +310,38 @@ package wires;
     logic [31 : 0] rdata1;
     logic [31 : 0] rdata2;
   } register_out_type;
+
+	typedef struct packed{
+		logic [0 : 0] L;
+		logic [1 : 0] A;
+		logic [0 : 0] X;
+		logic [0 : 0] W;
+		logic [0 : 0] R;
+	} csr_pmp_type;
+
+	typedef csr_pmp_type csr_pmpcfg_type[0:pmp_regions-1];
+
+	csr_pmp_type init_csr_pmpcfg_reg = '{default:'0};
+
+	typedef logic [31:0] csr_pmpaddr_type[0:pmp_regions-1];
+
+	csr_pmpaddr_type init_csr_pmpaddr_reg = '{default:'0};
+
+	typedef struct packed{
+		logic [0  : 0] mem_valid;
+		logic [0  : 0] mem_instr;
+		logic [31 : 0] mem_addr;
+		logic [3  : 0] mem_wstrb;
+		logic [1  : 0] priv_mode;
+		csr_pmpcfg_type pmpcfg;
+		csr_pmpaddr_type pmpaddr;
+	} pmp_in_type;
+
+	typedef struct packed{
+		logic [0  : 0] exc;
+		logic [3  : 0] ecause;
+		logic [31 : 0] etval;
+	} pmp_out_type;
 
   typedef struct packed{
     logic [31 : 0] pc;

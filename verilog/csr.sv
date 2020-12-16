@@ -1,3 +1,4 @@
+import configure::*;
 import constants::*;
 import wires::*;
 
@@ -15,6 +16,9 @@ module csr
   timeprecision 1ps;
 
   csr_machine_reg_type csr_machine_reg;
+
+  csr_pmpcfg_type pmpcfg;
+  csr_pmpaddr_type pmpaddr;
 
   logic [0:0] exception = 0;
   logic [0:0] mret = 0;
