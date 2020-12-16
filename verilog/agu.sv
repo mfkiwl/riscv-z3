@@ -10,18 +10,18 @@ module agu
   timeunit 1ns;
   timeprecision 1ps;
 
-  logic [0  : 0] misalign;
+  logic [0  : 0] misalign = 0;
 
-  logic [0  : 0] exception;
-  logic [3  : 0] ecause;
-  logic [31 : 0] etval;
+  logic [0  : 0] exception = 0;
+  logic [3  : 0] ecause = 0;
+  logic [31 : 0] etval = 0;
 
-  logic [0  : 0] imem_access;
-  logic [0  : 0] dmem_access;
+  logic [0  : 0] imem_access = 0;
+  logic [0  : 0] dmem_access = 0;
 
-  logic [31 : 0] address;
-  logic [3  : 0] byteenable;
-  logic [0  : 0] sel;
+  logic [31 : 0] address = 0;
+  logic [3  : 0] byteenable = 0;
+  logic [0  : 0] sel = 0;
 
   always_comb begin
 

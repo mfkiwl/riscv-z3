@@ -15,11 +15,11 @@ module decode_stage
   input bcu_out_type bcu_out,
   output bcu_in_type bcu_in,
   input register_out_type register_out,
-  output register_in_type register_in,
+  output register_rin_type register_rin,
   input csr_out_type csr_out,
-  output csr_in_type csr_in,
+  output csr_dec_in_type csr_dec_in,
   input forwarding_out_type forwarding_out,
-  output forwarding_in_type forwarding_in,
+  output forwarding_dec_in_type forwarding_dec_in,
   output mem_in_type dmem_in,
   input pmp_out_type dpmp_out,
   output pmp_in_type dpmp_in,
@@ -111,17 +111,17 @@ module decode_stage
 
     v.npc = v.pc + ((v.instr[1:0] == 2'b11) ? 4 : 2);
 
-    register_in.rden1 = v.rden1;
-    register_in.rden2 = v.rden2;
-    register_in.raddr1 = v.raddr1;
-    register_in.raddr2 = v.raddr2;
+    register_rin.rden1 = v.rden1;
+    register_rin.rden2 = v.rden2;
+    register_rin.raddr1 = v.raddr1;
+    register_rin.raddr2 = v.raddr2;
 
-    forwarding_in.register_rden1 = v.rden1;
-    forwarding_in.register_rden2 = v.rden2;
-    forwarding_in.register_raddr1 = v.raddr1;
-    forwarding_in.register_raddr2 = v.raddr2;
-    forwarding_in.register_rdata1 = register_out.rdata1;
-    forwarding_in.register_rdata2 = register_out.rdata2;
+    forwarding_dec_in.register_rden1 = v.rden1;
+    forwarding_dec_in.register_rden2 = v.rden2;
+    forwarding_dec_in.register_raddr1 = v.raddr1;
+    forwarding_dec_in.register_raddr2 = v.raddr2;
+    forwarding_dec_in.register_rdata1 = register_out.rdata1;
+    forwarding_dec_in.register_rdata2 = register_out.rdata2;
 
     v.rdata1 = forwarding_out.data1;
     v.rdata2 = forwarding_out.data2;
@@ -216,17 +216,17 @@ module decode_stage
     dmem_in.mem_wdata = store_data(v.rdata2,v.lsu_op.lsu_sb,v.lsu_op.lsu_sh,v.lsu_op.lsu_sw);
     dmem_in.mem_wstrb = (v.load == 1) ? 0 : v.byteenable;
 
-    csr_in.d_epc = v.pc;
-    csr_in.e_epc = r.pc;
-    csr_in.d_valid = v.valid;
-    csr_in.e_valid = r.valid;
-    csr_in.mret = v.mret;
-    csr_in.exception = v.exception;
-    csr_in.ecause = v.ecause;
-    csr_in.etval = v.etval;
+    csr_dec_in.d_epc = v.pc;
+    csr_dec_in.e_epc = r.pc;
+    csr_dec_in.d_valid = v.valid;
+    csr_dec_in.e_valid = r.valid;
+    csr_dec_in.mret = v.mret;
+    csr_dec_in.exception = v.exception;
+    csr_dec_in.ecause = v.ecause;
+    csr_dec_in.etval = v.etval;
 
-    csr_in.crden = v.crden;
-    csr_in.craddr = v.caddr;
+    csr_dec_in.crden = v.crden;
+    csr_dec_in.craddr = v.caddr;
 
     v.cdata = csr_out.cdata;
 

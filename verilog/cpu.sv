@@ -43,11 +43,14 @@ module cpu
   decoder_out_type decoder_out;
   compress_in_type compress_in;
   compress_out_type compress_out;
-  forwarding_in_type forwarding_in;
+  forwarding_dec_in_type forwarding_dec_in;
+  forwarding_exe_in_type forwarding_exe_in;
   forwarding_out_type forwarding_out;
-  csr_in_type csr_in;
+  csr_dec_in_type csr_dec_in;
+  csr_exe_in_type csr_exe_in;
   csr_out_type csr_out;
-  register_in_type register_in;
+  register_rin_type register_rin;
+  register_win_type register_win;
   register_out_type register_out;
   fetch_in_type fetch_in;
   decode_in_type decode_in;
@@ -75,6 +78,22 @@ module cpu
   assign execute_in.f = fetch_out;
   assign execute_in.d = decode_out;
   assign execute_in.e = execute_out;
+
+  assign imemory_valid = imem_in.mem_valid;
+  assign imemory_instr = imem_in.mem_instr;
+  assign imemory_addr = imem_in.mem_addr;
+  assign imemory_wdata = imem_in.mem_wdata;
+  assign imemory_wstrb = imem_in.mem_wstrb;
+  assign imem_out.mem_rdata = imemory_rdata;
+  assign imem_out.mem_ready = imemory_ready;
+
+  assign dmemory_valid = dmem_in.mem_valid;
+  assign dmemory_instr = dmem_in.mem_instr;
+  assign dmemory_addr = dmem_in.mem_addr;
+  assign dmemory_wdata = dmem_in.mem_wdata;
+  assign dmemory_wstrb = dmem_in.mem_wstrb;
+  assign dmem_out.mem_rdata = dmemory_rdata;
+  assign dmem_out.mem_ready = dmemory_ready;
 
   agu agu_comp
   (
@@ -124,7 +143,8 @@ module cpu
 
   forwarding forwarding_comp
   (
-    .forwarding_in (forwarding_in),
+    .forwarding_dec_in (forwarding_dec_in),
+    .forwarding_exe_in (forwarding_exe_in),
     .forwarding_out (forwarding_out)
   );
 
@@ -144,7 +164,8 @@ module cpu
   (
     .rst (rst),
     .clk (clk),
-    .register_in (register_in),
+    .register_rin (register_rin),
+    .register_win (register_win),
     .register_out (register_out)
   );
 
@@ -152,7 +173,8 @@ module cpu
   (
     .rst (rst),
     .clk (clk),
-    .csr_in (csr_in),
+    .csr_dec_in (csr_dec_in),
+    .csr_exe_in (csr_exe_in),
     .csr_out (csr_out),
     .extern_irpt (extern_irpt),
     .timer_irpt (timer_irpt),
@@ -211,11 +233,11 @@ module cpu
     .bcu_out (bcu_out),
     .bcu_in (bcu_in),
     .register_out (register_out),
-    .register_in (register_in),
+    .register_rin (register_rin),
     .forwarding_out (forwarding_out),
-    .forwarding_in (forwarding_in),
+    .forwarding_dec_in (forwarding_dec_in),
     .csr_out (csr_out),
-    .csr_in (csr_in),
+    .csr_dec_in (csr_dec_in),
     .dmem_in (dmem_in),
     .dpmp_out (dpmp_out),
     .dpmp_in (dpmp_in),
@@ -237,30 +259,13 @@ module cpu
     .mul_in (mul_in),
     .div_out (div_out),
     .div_in (div_in),
-    .register_in (register_in),
-    .forwarding_in (forwarding_in),
+    .register_win (register_win),
+    .forwarding_exe_in (forwarding_exe_in),
     .csr_out (csr_out),
-    .csr_in (csr_in),
+    .csr_exe_in (csr_exe_in),
     .dmem_out (dmem_out),
     .d (execute_in),
     .q (execute_out)
   );
-
-
-  assign imemory_valid = imem_in.mem_valid;
-  assign imemory_instr = imem_in.mem_instr;
-  assign imemory_addr = imem_in.mem_addr;
-  assign imemory_wdata = imem_in.mem_wdata;
-  assign imemory_wstrb = imem_in.mem_wstrb;
-  assign imem_out.mem_rdata = imemory_rdata;
-  assign imem_out.mem_ready = imemory_ready;
-
-  assign dmemory_valid = dmem_in.mem_valid;
-  assign dmemory_instr = dmem_in.mem_instr;
-  assign dmemory_addr = dmem_in.mem_addr;
-  assign dmemory_wdata = dmem_in.mem_wdata;
-  assign dmemory_wstrb = dmem_in.mem_wstrb;
-  assign dmem_out.mem_rdata = dmemory_rdata;
-  assign dmem_out.mem_ready = dmemory_ready;
 
 endmodule

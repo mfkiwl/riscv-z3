@@ -14,10 +14,10 @@ module execute_stage
   output mul_in_type mul_in,
   input div_out_type div_out,
   output div_in_type div_in,
-  output register_in_type register_in,
-  output forwarding_in_type forwarding_in,
+  output register_win_type register_win,
+  output forwarding_exe_in_type forwarding_exe_in,
   input csr_out_type csr_out,
-  output csr_in_type csr_in,
+  output csr_exe_in_type csr_exe_in,
   input mem_out_type dmem_out,
   input execute_in_type d,
   output execute_out_type q
@@ -25,8 +25,8 @@ module execute_stage
   timeunit 1ns;
   timeprecision 1ps;
 
-  execute_reg_type r,rin;
-  execute_reg_type v;
+  execute_reg_type r,rin = init_execute_reg;
+  execute_reg_type v = init_execute_reg;
 
   always_comb begin
 
@@ -170,18 +170,18 @@ module execute_stage
       v.stall = 0;
     end
 
-    register_in.wren = v.wren;
-    register_in.waddr = v.waddr;
-    register_in.wdata = v.wdata;
+    register_win.wren = v.wren;
+    register_win.waddr = v.waddr;
+    register_win.wdata = v.wdata;
 
-    forwarding_in.execute_wren = v.wren;
-    forwarding_in.execute_waddr = v.waddr;
-    forwarding_in.execute_wdata = v.wdata;
+    forwarding_exe_in.execute_wren = v.wren;
+    forwarding_exe_in.execute_waddr = v.waddr;
+    forwarding_exe_in.execute_wdata = v.wdata;
 
-    csr_in.valid = v.valid;
-    csr_in.cwren = v.cwren;
-    csr_in.cwaddr = v.caddr;
-    csr_in.cdata = v.cdata;
+    csr_exe_in.valid = v.valid;
+    csr_exe_in.cwren = v.cwren;
+    csr_exe_in.cwaddr = v.caddr;
+    csr_exe_in.cdata = v.cdata;
 
     rin = v;
 

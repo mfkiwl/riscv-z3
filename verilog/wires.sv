@@ -301,10 +301,13 @@ package wires;
     logic [4  : 0] raddr1;
     logic [0  : 0] rden2;
     logic [4  : 0] raddr2;
+  } register_rin_type;
+
+  typedef struct packed{
     logic [0  : 0] wren;
     logic [4  : 0] waddr;
     logic [31 : 0] wdata;
-  } register_in_type;
+  } register_win_type;
 
   typedef struct packed{
     logic [31 : 0] rdata1;
@@ -802,21 +805,24 @@ package wires;
   };
 
   typedef struct packed{
-    logic [0  : 0] valid;
-    logic [0  : 0] cwren;
     logic [0  : 0] crden;
-    logic [11 : 0] cwaddr;
     logic [11 : 0] craddr;
-    logic [31 : 0] cdata;
+    logic [31 : 0] d_epc;
+    logic [31 : 0] e_epc;
+    logic [0  : 0]  d_valid;
+    logic [0  : 0]  e_valid;
     logic [0  : 0] mret;
     logic [0  : 0] exception;
     logic [3  : 0] ecause;
-    logic [31 : 0] d_epc;
-    logic [31 : 0] e_epc;
-    logic [0 : 0]  d_valid;
-    logic [0 : 0]  e_valid;
     logic [31 : 0] etval;
-  } csr_in_type;
+  } csr_dec_in_type;
+
+  typedef struct packed{
+    logic [0  : 0] valid;
+    logic [0  : 0] cwren;
+    logic [11 : 0] cwaddr;
+    logic [31 : 0] cdata;
+  } csr_exe_in_type;
 
   typedef struct packed{
     logic [0  : 0] exception;
@@ -833,10 +839,13 @@ package wires;
     logic [4  : 0] register_raddr2;
     logic [31 : 0] register_rdata1;
     logic [31 : 0] register_rdata2;
+  } forwarding_dec_in_type;
+
+  typedef struct packed{
     logic [0  : 0] execute_wren;
     logic [4  : 0] execute_waddr;
     logic [31 : 0] execute_wdata;
-  } forwarding_in_type;
+  } forwarding_exe_in_type;
 
   typedef struct packed{
     logic [31 : 0] data1;

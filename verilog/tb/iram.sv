@@ -17,8 +17,8 @@ module iram
 
   logic [31 : 0] iram_block[0:2**iram_depth-1];
 
-  logic [31 : 0] rdata;
-  logic [0  : 0] ready;
+  logic [31 : 0] rdata = 0;
+  logic [0  : 0] ready = 0;
 
   task check;
     input logic [31 : 0] iram_block[0:2**iram_depth-1];

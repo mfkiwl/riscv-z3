@@ -8,10 +8,10 @@ module lsu
   timeunit 1ns;
   timeprecision 1ps;
 
-  logic [31:0] ldata;
-  logic [7:0]  data_b;
-  logic [15:0] data_h;
-  logic [31:0] data_w;
+  logic [31:0] ldata = 0;
+  logic [7:0]  data_b = 0;
+  logic [15:0] data_h = 0;
+  logic [31:0] data_w = 0;
 
   always_comb begin
 

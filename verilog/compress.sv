@@ -8,56 +8,56 @@ module compress
   timeunit 1ns;
   timeprecision 1ps;
 
-  logic [31 : 0] instr;
+  logic [31 : 0] instr = 0;
 
-  logic [31 : 0] imm_lwsp;
-  logic [31 : 0] imm_swsp;
-  logic [31 : 0] imm_lswr;
+  logic [31 : 0] imm_lwsp = 0;
+  logic [31 : 0] imm_swsp = 0;
+  logic [31 : 0] imm_lswr = 0;
 
-  logic [31 : 0] imm_j;
-  logic [31 : 0] imm_b;
-  logic [31 : 0] imm_w;
-  logic [31 : 0] imm_i;
-  logic [31 : 0] imm_u;
-  logic [31 : 0] imm_p;
+  logic [31 : 0] imm_j = 0;
+  logic [31 : 0] imm_b = 0;
+  logic [31 : 0] imm_w = 0;
+  logic [31 : 0] imm_i = 0;
+  logic [31 : 0] imm_u = 0;
+  logic [31 : 0] imm_p = 0;
 
-  logic [31 : 0] imm;
+  logic [31 : 0] imm = 0;
 
-  logic [1  : 0] opcode;
-  logic [2  : 0] funct3;
-  logic [0  : 0] funct4;
-  logic [1  : 0] funct6;
-  logic [1  : 0] funct8;
-  logic [2  : 0] funct9;
+  logic [1  : 0] opcode = 0;
+  logic [2  : 0] funct3 = 0;
+  logic [0  : 0] funct4 = 0;
+  logic [1  : 0] funct6 = 0;
+  logic [1  : 0] funct8 = 0;
+  logic [2  : 0] funct9 = 0;
 
-  logic [4  : 0] waddr;
-  logic [4  : 0] raddr1;
-  logic [4  : 0] raddr2;
+  logic [4  : 0] waddr = 0;
+  logic [4  : 0] raddr1 = 0;
+  logic [4  : 0] raddr2 = 0;
 
-  logic [0  : 0] wren;
-  logic [0  : 0] rden1;
-  logic [0  : 0] rden2;
+  logic [0  : 0] wren = 0;
+  logic [0  : 0] rden1 = 0;
+  logic [0  : 0] rden2 = 0;
 
-  logic [0  : 0] auipc;
-  logic [0  : 0] lui;
-  logic [0  : 0] jal;
-  logic [0  : 0] jalr;
-  logic [0  : 0] branch;
-  logic [0  : 0] load;
-  logic [0  : 0] store;
-  logic [0  : 0] ebreak;
-  logic [0  : 0] valid;
+  logic [0  : 0] auipc = 0;
+  logic [0  : 0] lui = 0;
+  logic [0  : 0] jal = 0;
+  logic [0  : 0] jalr = 0;
+  logic [0  : 0] branch = 0;
+  logic [0  : 0] load = 0;
+  logic [0  : 0] store = 0;
+  logic [0  : 0] ebreak = 0;
+  logic [0  : 0] valid = 0;
 
-  alu_op_type alu_op;
-  bcu_op_type bcu_op;
-  lsu_op_type lsu_op;
+  alu_op_type alu_op = 0;
+  bcu_op_type bcu_op = 0;
+  lsu_op_type lsu_op = 0;
 
-  logic [0  : 0] nonzero_imm_j;
-  logic [0  : 0] nonzero_imm_b;
-  logic [0  : 0] nonzero_imm_w;
-  logic [0  : 0] nonzero_imm_i;
-  logic [0  : 0] nonzero_imm_u;
-  logic [0  : 0] nonzero_imm_p;
+  logic [0  : 0] nonzero_imm_j = 0;
+  logic [0  : 0] nonzero_imm_b = 0;
+  logic [0  : 0] nonzero_imm_w = 0;
+  logic [0  : 0] nonzero_imm_i = 0;
+  logic [0  : 0] nonzero_imm_u = 0;
+  logic [0  : 0] nonzero_imm_p = 0;
 
   always_comb begin
 
